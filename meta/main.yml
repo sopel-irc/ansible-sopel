@@ -1,0 +1,26 @@
+---
+
+galaxy_info:
+  role_name: "sopel"
+  author: "Mikkel Jeppesen"
+  description: "Install sopel IRC bot and set up systemd unit"
+  license: "license (MIT)"
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: "Ubuntu"
+      versions:
+        - "xenial"
+        - "bionic"
+    - name: "Debian"
+      versions:
+        - "jessie"
+        - "stretch"
+
+  galaxy_tags:
+    - "sopel"
+    - "irc"
+    - "bot"
+    - "networking"
+
+dependencies: []
