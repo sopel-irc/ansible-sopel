@@ -1,0 +1,35 @@
+[core]
+log_raw = false
+logdir = {{ sopel_log_dir }}
+pid_dir = {{ sopel_pid_dir }}
+db_filename = {{ sopel_config_dir }}/default.db
+
+prefix = {{ sopel_command_prefix }} 
+help_prefix = {{ sopel_command_prefix }}
+
+nick = {{ sopel_nick }}
+auth_username = {{ sopel_auth_user }}
+auth_password = {{ sopel_auth_pass }}
+auth_method = {{ sopel_auth_method }}
+
+host = {{ sopel_irc_host }}
+use_ssl = true
+verify_ssl = true
+port = {{ sopel_irc_port }}
+
+owner = {{ sopel_bot_owner }}
+channels = {{ sopel_channels|join(',') }}
+nick_blocks = {{ sopel_ignored_nicks|join(',') }}
+host_blocks = {{ sopel_ignored_hosts|join(',') }}
+
+
+[admin]
+hold_ground = false
+auto_accept_invite = true
+
+[wikipedia]
+default_lang = en
+
+[clock]
+tz = {{ sopel_timezone }}
+time_format = {{ sopel_time_format }}
