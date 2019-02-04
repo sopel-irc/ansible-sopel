@@ -76,13 +76,12 @@ sopel_time_format: '[%Y-%m-%d - %T %Z]'
 
 ## Installation
 
-### Not yet on ansible galaxy. Soon(tm)
-`$ ansible-galaxy install duckle.sopel`
+`$ ansible-galaxy install duckle29.sopel`
 
 ## Ansible Galaxy
 
 You can find it on the official
-[Ansible Galaxy](https://galaxy.ansible.com/duckle/sopel/) if you want to
+[Ansible Galaxy](https://galaxy.ansible.com/duckle29/sopel/) if you want to
 rate it.
 
 ## License
