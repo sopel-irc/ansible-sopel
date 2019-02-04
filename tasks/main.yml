@@ -4,6 +4,7 @@
   apt:
     name: python3
     state: present
+    update_cache: yes
 
 - name: Install enchant
   apt:

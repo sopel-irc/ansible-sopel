@@ -30,9 +30,9 @@ sopel_command_prefix: '\.'
 sopel_nick: 'sopel_irc_bot'
 sopel_auth_method: 'sasl'
 
-# Remember to set sopel_auth_user and sopel_auth_pass in main.yml in vars/
-# Alternatively set them in your playbook.
-# vars/main.yml is ignored by git, so shouldn't be commited to your git history (But check to make sure!)
+# Remember to set sopel_auth_user and sopel_auth_pass
+# sopel_auth_user: authUser
+# sopel_auth_pass: authPass
 
 # The network sopel should connect to
 sopel_irc_host: 'chat.freenode.org'
@@ -69,6 +69,8 @@ sopel_time_format: '[%Y-%m-%d - %T %Z]'
   vars:
     sopel_auth_method: 'nickserv'
     sopel_bot_owner: 'testman'
+    sopel_auth_user: authUser
+    sopel_auth_pass: authPass
 
   roles:
     - sopel
