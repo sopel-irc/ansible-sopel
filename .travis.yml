@@ -20,10 +20,6 @@ env:
     - MOLECULE_DISTRO: debian9
       LC_ALL: en_US.UTF-8
 
-    - MOLECULE_DISTRO: debian8
-      LC_ALL: en_US.UTF-8
-
-
 install:
   # Install test dependencies.
   - pip install molecule docker
