@@ -16,9 +16,9 @@ galaxy_info:
       versions:
         - "jessie"
         - "stretch"
-    - name: "EL
+    - name: "EL"
       versions:
-        - 7
+        - "7"
 
   galaxy_tags:
     - "sopel"
