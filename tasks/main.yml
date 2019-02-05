@@ -1,33 +1,39 @@
 ---
 
 - name: Install python3
+  become: yes
   apt:
     name: python3
     state: present
     update_cache: yes
 
 - name: Install enchant
+  become: yes
   apt:
     name: enchant
     state: present
 
 - name: Add universe repository for ubuntu bionic
+  become: yes
   apt_repository: 
     repo: deb http://archive.ubuntu.com/ubuntu bionic universe
     state: present
   when: ansible_distribution_release == 'bionic'
 
 - name: Install pip3
+  become: yes
   apt:
     name: python3-pip
     state: present
 
 - name: Install sopel
+  become: yes
   pip:
     name: sopel
     executable: pip3
 
 - name: Add sopel system user
+  become: yes
   user:
     name: sopel
     password: '!'
@@ -36,6 +42,7 @@
     state: present
 
 - name: Make sopel folders
+  become: yes
   file:
     path: '{{ item }}'
     owner: sopel
@@ -47,17 +54,24 @@
     - '{{ sopel_pid_dir }}'
 
 - name: Copy sopel config
+  become: yes
   template:
+    owner: sopel
+    group: sopel
     src: templates/sopel.cfg.j2
     dest: '{{ sopel_config_dir }}/sopel.cfg'
 
 - name: Add sopel systemd service
+  become: yes
   template:
+    owner: sopel
+    group: sopel
     src: templates/sopel.service.j2
     dest: /etc/systemd/system/sopel.service
   when: sopel_install_systemd_service
 
 - name: Start and enable sopel
+  become: yes
   service:
     name: sopel
     state: started
