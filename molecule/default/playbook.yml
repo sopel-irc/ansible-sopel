@@ -9,4 +9,4 @@
     sopel_auth_pass: authPass
 
   roles:
-    - role: ansible-sopel
+    - role: sopel.sopel
