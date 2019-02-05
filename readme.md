@@ -11,6 +11,7 @@ It is an [Ansible](http://www.ansible.com/home) role to:
 - Ubuntu 18.04 LTS (Bionic)
 - Debian 8 (Jessie)
 - Debian 9 (Stretch)
+- CentOS 7
 
 ## Role variables
 
