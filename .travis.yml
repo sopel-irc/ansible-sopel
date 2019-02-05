@@ -5,13 +5,24 @@ services: docker
 env:
   global:
     - ROLE_NAME: sopel
+    
   matrix:
     # Test defaults.
     - MOLECULE_DISTRO: centos7
+      LC_ALL: en_US.UTF-8
+
     - MOLECULE_DISTRO: ubuntu1804
+      LC_ALL: en_US.UTF-8
+
     - MOLECULE_DISTRO: ubuntu1604
+      LC_ALL: en_US.UTF-8
+
     - MOLECULE_DISTRO: debian9
+      LC_ALL: en_US.UTF-8
+
     - MOLECULE_DISTRO: debian8
+      LC_ALL: en_US.UTF-8
+
 
 install:
   # Install test dependencies.
