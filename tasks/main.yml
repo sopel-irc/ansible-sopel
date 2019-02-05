@@ -9,13 +9,6 @@
     - python-pip
     - python-setuptools
 
-- name: Generate en_US.UTF-8 locale
-  become: true
-  locale_gen:
-    name: en_US.UTF-8
-    state: present
-  when: ansible_os_family == 'Debian'
-
 - name: Install enchant
   become: true
   package:
