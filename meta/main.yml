@@ -26,5 +26,5 @@ galaxy_info:
     - "networking"
 
 dependencies:
-  - "debops.locales"
+  - "robertdebock.locale"
   - "spk83.python3"
