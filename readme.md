@@ -1,4 +1,4 @@
-## What is ansible-sopel?
+## What is ansible-sopel? [![Build Status](https://travis-ci.com/sopel-irc/ansible-sopel.svg?branch=master)](https://travis-ci.com/sopel-irc/ansible-sopel)
 
 It is an [Ansible](http://www.ansible.com/home) role to:
 
