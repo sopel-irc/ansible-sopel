@@ -8,5 +8,11 @@
     sopel_auth_user: authUser
     sopel_auth_pass: authPass
 
+  pre_tasks:
+    - name: Ensure apt is updated
+      apt:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
   roles:
     - role: sopel.sopel

@@ -14,8 +14,7 @@
         {{ ansible_distribution_release|lower }} universe
     state: present
   when:
-    - ansible_os_family == 'Debian'
-    - ansible_distribution_version >= '16.04'
+    - ansible_distribution == 'Ubuntu'
 
 - name: Install sopel RedHat
   become: true
