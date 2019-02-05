@@ -1,35 +1,47 @@
 ---
 
 - name: Install enchant
-  become: yes
+  become: true
   package:
     name: enchant
     state: present
 
 - name: Add universe repository for ubuntu
-  become: yes
-  apt_repository: 
-    repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower }} universe'
+  become: true
+  apt_repository:
+    repo: >-
+        deb http://archive.ubuntu.com/ubuntu
+        {{ ansible_distribution_release|lower }} universe
     state: present
-  when: ansible_distribution_version >= '16.04'
+  when:
+    - ansible_os_family == 'Debian'
+    - ansible_distribution_version >= '16.04'
+
+- name: Install sopel RedHat
+  become: true
+  pip:
+    name: sopel
+    executable: pip3.6
+  when: ansible_os_family == 'RedHat'
 
 - name: Install sopel
-  become: yes
+  become: true
   pip:
     name: sopel
     executable: pip3
+  when: ansible_os_family == 'Debian'
 
 - name: Add sopel system user
-  become: yes
+  become: true
   user:
     name: sopel
     password: '!'
     home: '{{ sopel_install_dir }}'
-    system: yes
+    system: true
     state: present
 
 - name: Make sopel folders
-  become: yes
+  become: true
   file:
     path: '{{ item }}'
     owner: sopel
@@ -41,7 +53,7 @@
     - '{{ sopel_pid_dir }}'
 
 - name: Copy sopel config
-  become: yes
+  become: true
   template:
     owner: sopel
     group: sopel
@@ -49,7 +61,7 @@
     dest: '{{ sopel_config_dir }}/sopel.cfg'
 
 - name: Add sopel systemd service
-  become: yes
+  become: true
   template:
     owner: sopel
     group: sopel
@@ -58,8 +70,8 @@
   when: sopel_install_systemd_service
 
 - name: Start and enable sopel
-  become: yes
+  become: true
   service:
     name: sopel
     state: started
-    enabled: yes
+    enabled: true

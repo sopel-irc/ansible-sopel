@@ -24,4 +24,4 @@ galaxy_info:
     - "networking"
 
 dependencies:
-  - "mdklatt.python3"
+  - "spk83.python3"
