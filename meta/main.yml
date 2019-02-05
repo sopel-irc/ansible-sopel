@@ -23,4 +23,5 @@ galaxy_info:
     - "bot"
     - "networking"
 
-dependencies: []
+dependencies:
+  - "mdklatt.python3"
