@@ -23,4 +23,5 @@ galaxy_info:
     - "bot"
     - "networking"
 
-dependencies: []
+dependencies:
+  - "spk83.python3"

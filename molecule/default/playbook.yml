@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+
+  vars:
+    sopel_auth_method: 'nickserv'
+    sopel_bot_owner: 'testman'
+    sopel_auth_user: authUser
+    sopel_auth_pass: authPass
+
+  roles:
+    - role: ansible-sopel
