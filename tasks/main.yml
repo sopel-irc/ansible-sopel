@@ -8,7 +8,7 @@
   with_items:
     - python-pip
     - python-setuptools
-  
+
 - name: Generate en_US.UTF-8 locale
   become: true
   locale_gen:
