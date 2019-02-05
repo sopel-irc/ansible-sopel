@@ -28,7 +28,7 @@ scenario:
     - syntax
     - create
     - converge
-    - idempotence
+    #- idempotence
     - destroy
 
 verifier:
