@@ -5,6 +5,7 @@ It is an [Ansible](http://www.ansible.com/home) role that installs sopel irc bot
 
 - Ubuntu 16.04 LTS (Xenial)
 - Ubuntu 18.04 LTS (Bionic)
+- Debian 8 (Jessie)
 - Debian 9 (Stretch)
 - CentOS 7
 
