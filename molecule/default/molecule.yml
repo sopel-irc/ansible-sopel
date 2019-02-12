@@ -27,7 +27,7 @@ scenario:
     - dependency
     - syntax
     - create
-    - prepare
+    # - prepare
     - converge
     - idempotence
     - destroy

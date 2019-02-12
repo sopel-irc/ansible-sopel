@@ -28,7 +28,7 @@
   become: true
   package:
     name: python3-venv
-  when: 
+  when:
     - ansible_os_family == 'Debian'
     - sopel_install_python3
 
