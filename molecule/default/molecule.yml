@@ -27,8 +27,9 @@ scenario:
     - dependency
     - syntax
     - create
+    - prepare
     - converge
-    # - idempotence
+    - idempotence
     - destroy
 
 verifier:

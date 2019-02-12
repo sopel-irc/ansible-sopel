@@ -25,20 +25,10 @@
   when:
     - ansible_distribution == 'Ubuntu'
 
-- name: Install sopel RedHat
+- name: Install venv for Debian
   become: true
-  pip:
-    name: sopel
-    executable: pip3.6
-  when: ansible_os_family == 'RedHat'
-
-- name: Install sopel Debian
-  become: true
-  environment:
-    LC_ALL: en_US.UTF-8
-  pip:
-    name: sopel
-    executable: pip3
+  package:
+    name: python3-venv
   when: ansible_os_family == 'Debian'
 
 - name: Add sopel system user
@@ -78,6 +68,42 @@
     src: templates/sopel.service.j2
     dest: /etc/systemd/system/sopel.service
   when: sopel_install_systemd_service
+
+- name: Install sopel RedHat
+  pip:
+    name: [pip>19, setuptools>40, sopel>6]
+    state: present
+    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv_command: '/usr/bin/python3.6 -m venv'
+  when: ansible_os_family == 'RedHat'
+
+- name: Install sopel Debian legacy
+  environment:
+    LC_ALL: 'en_US.UTF-8'
+  pip:
+    name: [pip>19, setuptools>40,'ipython<8,>7', sopel>6]
+    state: present
+    extra_args: '--no-binary sopel,pyenchant,maxminddb,simplegeneric'
+    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv_command: /usr/bin/python3 -m venv
+  when: ansible_distribution == 'Ubuntu' and  ansible_distribution_version|float <= 16.10 or
+        ansible_distribution == 'Debian' and ansible_distribution_version|int <= 8
+  register: debug_idempotency1
+
+- name: Install sopel Debian
+  environment:
+    LC_ALL: 'en_US.UTF-8'
+  pip:
+    name: [pip>19, setuptools>40, sopel>6]
+    state: present
+    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv_command: /usr/bin/python3 -m venv
+  when: ansible_distribution == 'Ubuntu' and  ansible_distribution_version|float > 16.10 or
+        ansible_distribution == 'Debian' and ansible_distribution_version|int > 8
+  
+
+- debug:
+    msg: '{{ debug_idempotency1.stdout_lines }}'
 
 - name: Start and enable sopel
   become: true
