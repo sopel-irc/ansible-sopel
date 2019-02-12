@@ -28,7 +28,9 @@
   become: true
   package:
     name: python3-venv
-  when: ansible_os_family == 'Debian'
+  when: 
+    - ansible_os_family == 'Debian'
+    - sopel_install_python3
 
 - name: Add sopel system user
   become: true
@@ -118,7 +120,6 @@
         ansible_distribution_version|float <= 16.10) or
         (ansible_distribution == 'Debian' and
         ansible_distribution_version|int <= 8)
-  register: debug_idempotency1
 
 - name: Install sopel Debian
   environment:
