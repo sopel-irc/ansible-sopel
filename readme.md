@@ -73,7 +73,7 @@ sopel_time_format: '[%Y-%m-%d - %T %Z]'
     sopel_auth_pass: authPass
 
   roles:
-    - sopel
+    - sopel.sopel
 ```
 
 ## Installation
