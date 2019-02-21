@@ -147,6 +147,6 @@
   service:
     name: sopel
     state: started
-  when: 
+  when:
     - sopel_start_systemd_service
     - sopel_install_systemd_service
