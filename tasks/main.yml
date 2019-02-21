@@ -141,3 +141,12 @@
     state: started
     enabled: true
   when: sopel_install_systemd_service
+
+- name: Start and enable sopel
+  become: true
+  service:
+    name: sopel
+    state: started
+  when: 
+    - sopel_start_systemd_service
+    - sopel_install_systemd_service

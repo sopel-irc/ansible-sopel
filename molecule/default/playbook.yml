@@ -7,6 +7,7 @@
     sopel_bot_owner: 'testman'
     sopel_auth_user: authUser
     sopel_auth_pass: authPass
+    sopel_start_systemd_service: false
 
   pre_tasks:
     - name: Ensure apt is updated
