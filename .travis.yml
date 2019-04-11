@@ -8,12 +8,12 @@ env:
     - ROLE_NAME: sopel
 
   matrix:
-    include:
-      - env: MOLECULE_DISTRO=centos7
-      - env: MOLECULE_DISTRO=ubuntu1804
-      - env: MOLECULE_DISTRO=ubuntu1604
-      - env: MOLECULE_DISTRO=debian8 MOLECULE_DOCKER_COMMAND='RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list'
-      - env: MOLECULE_DISTRO=debian9
+    # Test defaults.
+    - MOLECULE_DISTRO: centos7
+    - MOLECULE_DISTRO: ubuntu1804
+    - MOLECULE_DISTRO: ubuntu1604
+    #- MOLECULE_DISTRO: debian8
+    - MOLECULE_DISTRO: debian9
 
 install:
   # Install test dependencies.
