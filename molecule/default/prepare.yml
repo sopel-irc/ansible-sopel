@@ -8,7 +8,7 @@
       copy:
         src: jessiefix
         dest: /etc/apt/sources.list
-      when: 
+      when:
         - ansible_os_family == 'Debian'
         - ansible_distribution_version == "8"
 
