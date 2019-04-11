@@ -3,15 +3,6 @@
   hosts: all
 
   tasks:
-    - name: Apply jessie fix
-      become: true
-      copy:
-        src: jessiefix
-        dest: /etc/apt/sources.list
-      when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_version == "8"
-
     - name: Upgrade all packages (Debian)
       apt:
         upgrade: dist
