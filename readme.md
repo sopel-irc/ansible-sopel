@@ -31,7 +31,6 @@ sopel_command_prefix: '\.'
 # The nick sopel will present itself as in channels
 sopel_nick: 'sopel_irc_bot'
 sopel_auth_method: 'sasl'
-# remember to set sopel_auth_user and pass in credentials.yml in vars/
 
 # The network sopel should connect to
 sopel_irc_host: 'chat.freenode.org'
