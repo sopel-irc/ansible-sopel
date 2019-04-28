@@ -134,19 +134,17 @@
         (ansible_distribution == 'Debian' and
         ansible_distribution_version|int > 8)
 
-- name: Start and enable sopel
+- name: Enable sopel systemd service
   become: true
   service:
     name: sopel
-    state: started
     enabled: true
   when: sopel_install_systemd_service
 
-- name: Start and enable sopel
+- name: Start sopel
   become: true
   service:
     name: sopel
     state: started
   when:
     - sopel_start_systemd_service
-    - sopel_install_systemd_service
