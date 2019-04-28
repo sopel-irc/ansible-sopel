@@ -51,6 +51,7 @@
   with_items:
     - '{{ sopel_config_dir }}'
     - '{{ sopel_log_dir }}'
+    - '{{ sopel_log_dir }}/{{ sopel_instance_name }}'
     - '{{ sopel_pid_dir }}'
 
 - name: Copy sopel config
@@ -59,7 +60,7 @@
     owner: sopel
     group: sopel
     src: templates/sopel.cfg.j2
-    dest: '{{ sopel_config_dir }}/sopel.cfg'
+    dest: '{{ sopel_config_dir }}/{{ sopel_instance_name }}.cfg'
 
 - name: Add sopel systemd service
   become: true
@@ -67,14 +68,14 @@
     owner: sopel
     group: sopel
     src: templates/sopel.service.j2
-    dest: /etc/systemd/system/sopel.service
+    dest: /etc/systemd/system/{{ sopel_instance_name }}.service
   when: sopel_install_systemd_service
 
 - name: Install sopel RedHat
   pip:
     name: [pip>19, setuptools>40, sopel>6]
     state: present
-    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
     virtualenv_command: '/usr/bin/python3.6 -m venv'
   when: ansible_os_family == 'RedHat'
 
@@ -82,7 +83,7 @@
   pip:
     name: ['pip>18,<19', setuptools>40]
     state: present
-    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
     virtualenv_command: /usr/bin/python3 -m venv
   when: (ansible_distribution == 'Ubuntu' and
         ansible_distribution_version|float <= 16.10) or
@@ -93,7 +94,7 @@
   pip:
     name: 'ipython==6.5'
     state: present
-    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
     virtualenv_command: /usr/bin/python3 -m venv
   when:
     - ansible_distribution == 'Debian'
@@ -103,7 +104,7 @@
   pip:
     name: 'ipython==7.2'
     state: present
-    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
     virtualenv_command: /usr/bin/python3 -m venv
   when:
     - ansible_distribution == 'Ubuntu'
@@ -114,7 +115,7 @@
     name: 'sopel'
     state: present
     extra_args: '--no-binary sopel,pyenchant,maxminddb,simplegeneric'
-    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
     virtualenv_command: /usr/bin/python3 -m venv
   when: (ansible_distribution == 'Ubuntu' and
         ansible_distribution_version|float <= 16.10) or
@@ -127,7 +128,7 @@
   pip:
     name: [pip>19, setuptools>40, sopel>6]
     state: present
-    virtualenv: '{{ sopel_install_dir }}/venv'
+    virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
     virtualenv_command: /usr/bin/python3 -m venv
   when: (ansible_distribution == 'Ubuntu' and
         ansible_distribution_version|float > 16.10) or
@@ -137,14 +138,14 @@
 - name: Enable sopel systemd service
   become: true
   service:
-    name: sopel
+    name: '{{ sopel_instance_name }}'
     enabled: true
   when: sopel_install_systemd_service
 
 - name: Start sopel
   become: true
   service:
-    name: sopel
+    name: '{{ sopel_instance_name }}'
     state: started
   when:
     - sopel_start_systemd_service

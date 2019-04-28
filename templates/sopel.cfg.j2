@@ -1,8 +1,8 @@
 [core]
 log_raw = false
-logdir = {{ sopel_log_dir }}
+logdir = {{ sopel_log_dir }}/{{ sopel_instance_name}}
 pid_dir = {{ sopel_pid_dir }}
-db_filename = {{ sopel_config_dir }}/default.db
+db_filename = {{ sopel_config_dir }}/{{ sopel_instance_name }}.db
 
 prefix = {{ sopel_command_prefix }} 
 help_prefix = {{ sopel_command_prefix }}

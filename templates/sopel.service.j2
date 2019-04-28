@@ -6,13 +6,13 @@ After=network.target
 [Service]
 Type=simple
 User=sopel
-PIDFile={{ sopel_pid_dir }}/sopel-sopel.pid
-ExecStart={{ sopel_install_dir }}/venv/bin/sopel -c /etc/sopel/sopel.cfg
+PIDFile={{ sopel_pid_dir }}/sopel-{{ sopel_instance_name }}.pid
+ExecStart={{ sopel_install_dir }}/venv_{{ sopel_instance_name }}/bin/sopel -c {{ sopel_config_dir }}/{{ sopel_instance_name }}.cfg
 Restart=on-failure
 RestartPreventExitStatus=2
 RestartSec=30
 Environment=LC_ALL=en_US.UTF-8
-SyslogIdentifier=sopel
+SyslogIdentifier={{ sopel_instance_name }}
 
 [Install]
 WantedBy=multi-user.target

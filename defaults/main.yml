@@ -1,5 +1,5 @@
 ---
-
+sopel_instance_name: 'sopel'
 sopel_install_dir: '/srv/sopel'
 sopel_config_dir: '/etc/sopel'
 sopel_log_dir: '/var/log/sopel'
