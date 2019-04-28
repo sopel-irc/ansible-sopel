@@ -12,16 +12,18 @@ It is an [Ansible](http://www.ansible.com/home) role that installs sopel irc bot
 ## Role variables
 
 ``` yaml
-# The install dir is also the home dir of the user created for sopel
+---
+# Changing the instance name will allow several instances of Sopel to 
+# run side-by-side on the same server as long as they have 
+# different nicks, or connect to different servers.
+sopel_instance_name: 'sopel'
 sopel_install_dir: '/srv/sopel'
 sopel_config_dir: '/etc/sopel'
 sopel_log_dir: '/var/log/sopel'
 sopel_pid_dir: '/run/sopel'
 
 sopel_install_systemd_service: true
-
-# If you do not want this role to install python3, set this to false.
-# Python3 and venv is still required, but you can install it yourself
+sopel_start_systemd_service: true
 sopel_install_python3: true
 
 # The prefix used to call the bot.
@@ -57,9 +59,10 @@ sopel_time_format: '[%Y-%m-%d - %T %Z]'
 
 ## Example usage
 
+Example showing how to quickly and easily deploy two instances of sopel
 ``` yaml
 ---
-- name: Install Sopel
+- name: 'Install Sopel instance 1'
   hosts: vps
   become: true
   tags:
@@ -67,12 +70,31 @@ sopel_time_format: '[%Y-%m-%d - %T %Z]'
 
   vars:
     sopel_auth_method: 'nickserv'
-    sopel_bot_owner: 'testman'
-    sopel_auth_user: authUser
-    sopel_auth_pass: authPass
+    sopel_bot_owner: 'testManDan'
+    sopel_nick: Sopel_bot_1
+    sopel_auth_user: NICK OWNER HERE
+    sopel_auth_pass: NICK PASS HERE
 
   roles:
-    - sopel.sopel
+   - sopel.sopel
+
+- name: 'Install Sopel instance 2'
+  hosts: vps
+  become: true
+  tags:
+    - sopel
+
+  vars:
+    sopel_instance_name: 'sopel2'
+    sopel_auth_method: 'nickserv'
+    sopel_bot_owner: 'testManDan'
+    sopel_nick: Sopel_bot_2
+    sopel_auth_user: NICK OWNER HERE
+    sopel_auth_pass: NICK PASS HERE
+
+  roles:
+    - sopel
+
 ```
 
 ## Installation

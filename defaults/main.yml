@@ -1,4 +1,7 @@
 ---
+# Changing the instance name will allow several instances of Sopel to 
+# run side-by-side on the same server as long as they have 
+# different nicks, or connect to different servers.
 sopel_instance_name: 'sopel'
 sopel_install_dir: '/srv/sopel'
 sopel_config_dir: '/etc/sopel'
