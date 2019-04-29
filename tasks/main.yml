@@ -68,7 +68,7 @@
     owner: sopel
     group: sopel
     src: templates/sopel.service.j2
-    dest: /etc/systemd/system/{{ sopel_instance_name }}.service
+    dest: /etc/systemd/system/sopel-{{ sopel_instance_name }}.service
   when: sopel_install_systemd_service
 
 - name: Install sopel RedHat
@@ -138,14 +138,14 @@
 - name: Enable sopel systemd service
   become: true
   service:
-    name: '{{ sopel_instance_name }}'
+    name: 'sopel-{{ sopel_instance_name }}'
     enabled: true
   when: sopel_install_systemd_service
 
 - name: Start sopel
   become: true
   service:
-    name: '{{ sopel_instance_name }}'
+    name: 'sopel-{{ sopel_instance_name }}'
     state: started
   when:
     - sopel_start_systemd_service
