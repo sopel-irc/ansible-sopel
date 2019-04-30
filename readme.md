@@ -62,6 +62,9 @@ sopel_time_format: '[%Y-%m-%d - %T %Z]'
 ## Example usage
 
 Example showing how to quickly and easily deploy two instances of sopel
+This will set up two sopel instances, one with the default name sopel and one called sopel2
+It'll also install them as systemd services under the names: sopel-sopel and sopel-sopel2
+the config files will be found in /etc/sopel/
 ``` yaml
 ---
 - name: 'Install Sopel instance 1'
