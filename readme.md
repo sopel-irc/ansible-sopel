@@ -15,8 +15,8 @@ Debian 8 is currently not being tested on travis, as there's an issue with the d
 
 ``` yaml
 ---
-# Changing the instance name will allow several instances of Sopel to 
-# run side-by-side on the same server as long as they have 
+# Changing the instance name will allow several instances of Sopel to
+# run side-by-side on the same server as long as they have
 # different nicks, or connect to different servers.
 sopel_instance_name: 'sopel'
 sopel_install_dir: '/srv/sopel'
@@ -53,10 +53,21 @@ sopel_ignored_nicks:
 sopel_ignored_hosts:
   - ''
 
+# A list of plugins to enable. Default is everything enabled
+#sopel_enabled_plugins: []
+
+# A list of plugins to exclude. Default is none excluded
+#sopel_excluded_plugins: []
+
+## Any further additions to the sopel config can be added through this variable
+## it is appended to the end of the config
+#sopel_config_extra: |
+#  [currency]
+#  auto_convert = true
+
 # Default timezone and time format. http://strftime.org/ for format info
 sopel_timezone: 'Europe/Copenhagen'
 sopel_time_format: '[%Y-%m-%d - %T %Z]'
-
 ```
 
 ## Example usage
@@ -98,8 +109,7 @@ the config files will be found in /etc/sopel/
     sopel_auth_pass: NICK PASS HERE
 
   roles:
-    - sopel
-
+    - sopel.sopel
 ```
 
 ## Installation

@@ -22,6 +22,12 @@ channels = {{ sopel_channels|join(',') }}
 nick_blocks = {{ sopel_ignored_nicks|join(',') }}
 host_blocks = {{ sopel_ignored_hosts|join(',') }}
 
+{% if sopel_enabled_plugins is defined %}
+enable = {{ sopel_enabled_plugins|join(',') }}
+{% endif %}
+{% if sopel_excluded_plugins is defined %}
+exclude = {{ sopel_excluded_plugins|join(',') }}
+{% endif %}
 
 [admin]
 hold_ground = false
@@ -33,3 +39,7 @@ default_lang = en
 [clock]
 tz = {{ sopel_timezone }}
 time_format = {{ sopel_time_format }}
+
+{% if sopel_config_extra is defined %}
+{{ sopel_config_extra }}
+{% endif %}
