@@ -30,7 +30,7 @@
     name: python3-venv
   when:
     - ansible_os_family == 'Debian'
-    - sopel_install_python3
+    - sopel_install_python3|bool
 
 - name: Add sopel system user
   become: true
@@ -70,7 +70,7 @@
     group: sopel
     src: templates/sopel.service.j2
     dest: /etc/systemd/system/sopel-{{ sopel_instance_name }}.service
-  when: sopel_install_systemd_service
+  when: sopel_install_systemd_service|bool
 
 - name: Install sopel RedHat
   pip:
@@ -141,7 +141,7 @@
   service:
     name: 'sopel-{{ sopel_instance_name }}'
     enabled: true
-  when: sopel_install_systemd_service
+  when: sopel_install_systemd_service|bool
 
 - name: Start sopel
   become: true
@@ -149,4 +149,4 @@
     name: 'sopel-{{ sopel_instance_name }}'
     state: started
   when:
-    - sopel_start_systemd_service
+    - sopel_start_systemd_service|bool
