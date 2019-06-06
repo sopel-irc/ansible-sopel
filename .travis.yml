@@ -27,6 +27,7 @@ before_script:
 
 script:
   # Run tests.
+  - ansible --version && molecule --version
   - molecule test
 
 notifications:
