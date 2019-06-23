@@ -1,0 +1,7 @@
+---
+- name: restart sopel
+  become: true
+  service:
+    name: 'sopel-{{ sopel_instance_name }}'
+    state: restarted
+  when: sopel_start_systemd_service|bool
