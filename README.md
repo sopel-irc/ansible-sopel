@@ -1,4 +1,4 @@
-## What is ansible-sopel? [![Build Status](https://travis-ci.com/sopel-irc/ansible-sopel.svg?branch=master)](https://travis-ci.com/sopel-irc/ansible-sopel)
+## What is ansible-sopel? [![Molecule Test](https://github.com/sopel-irc/ansible-sopel/workflows/Molecule%20Test/badge.svg)](https://github.com/sopel-irc/ansible-sopel/actions?query=workflow%3A%22Molecule+Test%22)
 
 It is an [Ansible](http://www.ansible.com/home) role that installs sopel irc bot in a virtual environment.
 ## Supported platforms
