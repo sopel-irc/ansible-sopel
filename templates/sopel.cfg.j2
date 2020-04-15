@@ -19,7 +19,7 @@ port = {{ sopel_irc_port }}
 
 owner = {{ sopel_bot_owner }}
 channels = 
-    {{ sopel_channels|join('\n    ') }}
+    "{{ sopel_channels|join('"\n    "') }}"
 nick_blocks = 
     {{ sopel_ignored_nicks|join('\n    ') }}
 host_blocks = 
