@@ -5,7 +5,7 @@ on:
     branches:
       - master
 
-  pull_requestg:
+  pull_request:
     branches:
       - master
 
