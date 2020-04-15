@@ -9,7 +9,7 @@ It is an [Ansible](http://www.ansible.com/home) role that installs sopel irc bot
 - Debian 9 (Stretch)
 - CentOS 7
 
-Debian 8 is currently not being tested on travis, as there's an issue with the docker image used for it, however it has been tested successfully on an actual install.
+Debian 8 is currently not being tested, as there's an issue with the docker image used for it, however it has been tested successfully on an actual install.
 
 ## Role variables
 
