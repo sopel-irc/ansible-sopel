@@ -18,15 +18,24 @@ verify_ssl = true
 port = {{ sopel_irc_port }}
 
 owner = {{ sopel_bot_owner }}
-channels = {{ sopel_channels|join(',') }}
-nick_blocks = {{ sopel_ignored_nicks|join(',') }}
-host_blocks = {{ sopel_ignored_hosts|join(',') }}
+channels = 
+    "{{ sopel_channels|join('"\n    "') }}"
+nick_blocks = 
+    {{ sopel_ignored_nicks|join('\n    ') }}
+host_blocks = 
+    {{ sopel_ignored_hosts|join('\n    ') }}
 
 {% if sopel_enabled_plugins is defined %}
-enable = {{ sopel_enabled_plugins|join(',') }}
+enable = 
+    {{ sopel_enabled_plugins|join('\n    ') }}
+{% endif %}
+{% if sopel_bot_admins is defined %}
+admins = 
+    {{ sopel_bot_admins|join('\n    ') }}
 {% endif %}
 {% if sopel_excluded_plugins is defined %}
-exclude = {{ sopel_excluded_plugins|join(',') }}
+exclude = 
+    {{ sopel_excluded_plugins|join('\n    ') }}
 {% endif %}
 
 [admin]

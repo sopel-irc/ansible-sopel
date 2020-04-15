@@ -37,6 +37,9 @@ sopel_ignored_nicks:
 sopel_ignored_hosts:
   - ''
 
+## A list of admins allowed to control the bot other than the owner.
+# sopel_bot_admins: []
+
 ## A list of plugins to enable. Default is everything enabled
 # sopel_enabled_plugins: []
 
