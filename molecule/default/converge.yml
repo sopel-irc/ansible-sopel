@@ -14,11 +14,13 @@
       apt: update_cache=yes cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-    - name: Install python3-venv on Debian-likes
-      apt:
-        name: python3-venv
-      when: ansible_os_family =='Debian'
+    - name: Ensure python3 is installed
+      include_role:
+        name: bihealth.python3
 
+    - name: Ensure python virtual environment is available
+      include_role:
+        name: ome.python3_virtualenv
 
     - name: Wait for systemd to complete initialization.  # noqa 303
       command: systemctl is-system-running
