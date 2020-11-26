@@ -42,7 +42,7 @@
           - kernel-devel
           - make
           - python3-devel
-      when: ansible_os_family 'RedHat'
+      when: ansible_os_family == 'RedHat'
 
     - name: Wait for systemd to complete initialization.  # noqa 303
       command: systemctl is-system-running
