@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-
   vars:
     sopel_auth_method: 'nickserv'
     sopel_bot_owner: 'testman'
@@ -15,5 +14,7 @@
         cache_valid_time: 3600
       when: ansible_os_family == 'Debian'
 
-  roles:
-    - role: sopel.sopel
+  tasks:
+    - name: "Include sopel.sopel"
+      include_role:
+        name: "sopel.sopel"

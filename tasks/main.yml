@@ -47,6 +47,7 @@
     path: '{{ item }}'
     owner: sopel
     group: sopel
+    mode: 0644
     state: directory
   with_items:
     - '{{ sopel_config_dir }}'
@@ -59,6 +60,7 @@
   template:
     owner: sopel
     group: sopel
+    mode: 0644
     src: templates/sopel.cfg.j2
     dest: '{{ sopel_config_dir }}/{{ sopel_instance_name }}.cfg'
   notify: restart sopel
@@ -66,8 +68,9 @@
 - name: Add sopel systemd service
   become: true
   template:
-    owner: sopel
-    group: sopel
+    owner: root
+    group: root
+    mode: 0644
     src: templates/sopel.service.j2
     dest: /etc/systemd/system/sopel-{{ sopel_instance_name }}.service
   notify: restart sopel

@@ -37,7 +37,8 @@ jobs:
         run: |
           sudo apt install docker
           python3 -m pip install --upgrade pip
-          python3 -m pip install docker 'molecule<3'
+          python3 -m pip install docker molecule yamllint \
+                     ansible-lint molecule-docker
 
       - name: Test with molecule
         run: |
