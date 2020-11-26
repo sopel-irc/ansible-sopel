@@ -16,7 +16,7 @@
 
     - name: Ensure python3 is installed
       include_role:
-        name: bihealth.python3
+        name: darkwizard242.python3
 
     - name: Ensure python virtual environment is available
       include_role:
