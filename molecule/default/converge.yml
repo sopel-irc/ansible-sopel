@@ -25,11 +25,19 @@
           - python3-wheel
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure wheel is available (Rhel)
+    - name: Ensure wheel is available (RHEL 7)
       package:
         name:
-          - python-wheel
-      when: ansible_os_family == 'RedHat'
+          - epel-release
+          - python3-wheel
+      when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "7") or
+
+    - name: Ensure wheel is available (RHEL 8)
+      package:
+        name:
+          - python3-wheel
+      when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "8") or
+            (ansible_facts['distribution'] == "Fedora" and ansible_facts['distribution_major_version'] == "32")
 
     - name: Wait for systemd to complete initialization.  # noqa 303
       command: systemctl is-system-running
