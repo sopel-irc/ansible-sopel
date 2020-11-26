@@ -18,24 +18,33 @@
       package:
         name: python3
 
-    - name: Ensure virtualenv and wheel is available (Debian)
+    - name: Ensure virtualenv, wheel and build tools are available (Debian)
       package:
         name:
           - python3-venv
           - python3-wheel
+          - build-essential
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure wheel is available (RHEL 7)
+    - name: Ensure wheel and build tools are available (RHEL 7)
       package:
         name:
           - epel-release
           - python3-wheel
+          - gcc
+          - gcc-c++
+          - kernel-devel
+          - make
       when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "7")
 
-    - name: Ensure wheel is available (RHEL 8)
+    - name: Ensure wheel and build tools are available (RHEL 8)
       package:
         name:
           - python3-wheel
+          - gcc
+          - gcc-c++
+          - kernel-devel
+          - make
       when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "8") or
             (ansible_facts['distribution'] == "Fedora" and ansible_facts['distribution_major_version'] == "32")
 
