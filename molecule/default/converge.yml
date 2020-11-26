@@ -1,0 +1,60 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    sopel_auth_method: 'nickserv'
+    sopel_bot_owner: 'testman'
+    sopel_auth_user: authUser
+    sopel_auth_pass: authPass
+    sopel_start_systemd_service: false
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+    - name: Ensure python3 is installed
+      package:
+        name: python3
+
+    - name: Ensure virtualenv, wheel and build tools are available (Debian)
+      package:
+        name:
+          - python3-venv
+          - python3-wheel
+          - python3-dev
+          - build-essential
+      when: ansible_os_family == 'Debian'
+
+    - name: Enable EPEL (RHEL 7)
+      package:
+        name:
+          - epel-release
+      when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "7")
+
+    - name: Ensure wheel and build tools are available (RHEL)
+      package:
+        name:
+          - python3-wheel
+          - gcc
+          - gcc-c++
+          - kernel-devel
+          - make
+          - python3-devel
+      when: ansible_os_family == 'RedHat'
+
+    - name: Wait for systemd to complete initialization.  # noqa 303
+      command: systemctl is-system-running
+      register: systemctl_status
+      until: >
+        'running' in systemctl_status.stdout or
+        'degraded' in systemctl_status.stdout
+      retries: 30
+      delay: 5
+      when: ansible_service_mgr == 'systemd'
+      changed_when: false
+      failed_when: systemctl_status.rc > 1
+
+  roles:
+    - role: sopel.sopel
