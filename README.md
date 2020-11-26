@@ -3,13 +3,17 @@
 It is an [Ansible](http://www.ansible.com/home) role that installs sopel irc bot in a virtual environment.
 ## Supported platforms
 
-- Ubuntu 16.04 LTS (Xenial)
 - Ubuntu 18.04 LTS (Bionic)
-- Debian 8 (Jessie)
+- Ubuntu 20.04 LTS (Focal)
 - Debian 9 (Stretch)
+- Debian 10 (Buster)
 - CentOS 7
+- CentOS 8
 
-Debian 8 is currently not being tested, as there's an issue with the docker image used for it, however it has been tested successfully on an actual install.
+## Dependencies
+- Python 3
+- Python venv
+- Python wheel or build tools
 
 ## Role variables
 
@@ -26,6 +30,9 @@ sopel_pid_dir: '/run/sopel'
 
 sopel_install_systemd_service: true
 sopel_start_systemd_service: true
+
+# If your system uses a different virtual environment wrapper you can overwrite the venv command
+sopel_venv_cmd: '/usr/bin/python3 -m venv'
 
 # The prefix used to call the bot.
 # It's parsed as regex so remember to escape special characters

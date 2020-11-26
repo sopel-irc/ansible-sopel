@@ -60,7 +60,7 @@
     name: [pip>19, setuptools>40, sopel>7]
     state: present
     virtualenv: '{{ sopel_install_dir }}/venv_{{ sopel_instance_name }}'
-    virtualenv_command: /usr/bin/python3 -m venv
+    virtualenv_command: '{{ sopel_venv_cmd }}'
   notify: restart sopel
 
 - name: Reload systemd daemon
