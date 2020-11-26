@@ -30,7 +30,7 @@
         name:
           - epel-release
           - python3-wheel
-      when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "7") or
+      when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] >= "7")
 
     - name: Ensure wheel is available (RHEL 8)
       package:
