@@ -26,7 +26,6 @@ sopel_pid_dir: '/run/sopel'
 
 sopel_install_systemd_service: true
 sopel_start_systemd_service: true
-sopel_install_python3: true
 
 # The prefix used to call the bot.
 # It's parsed as regex so remember to escape special characters

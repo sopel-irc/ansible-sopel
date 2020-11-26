@@ -25,6 +25,3 @@ galaxy_info:
     - "irc"
     - "bot"
     - "networking"
-
-dependencies:
-  - {role: "spk83.python3", when: sopel_install_python3}
