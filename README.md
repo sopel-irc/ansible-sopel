@@ -125,3 +125,7 @@ rate it.
 ## License
 
 MIT
+
+---
+**Thanks to Geerlingguy for great ansible CI documentation. CI is adapted from his work.**
+

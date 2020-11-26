@@ -1,6 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  become: true
   vars:
     sopel_auth_method: 'nickserv'
     sopel_bot_owner: 'testman'
@@ -9,12 +10,21 @@
     sopel_start_systemd_service: false
 
   pre_tasks:
-    - name: Ensure apt is updated
-      apt:
-        cache_valid_time: 3600
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-  tasks:
-    - name: "Include sopel.sopel"
-      include_role:
-        name: "sopel.sopel"
+    - name: Wait for systemd to complete initialization.  # noqa 303
+      command: systemctl is-system-running
+      register: systemctl_status
+      until: >
+        'running' in systemctl_status.stdout or
+        'degraded' in systemctl_status.stdout
+      retries: 30
+      delay: 5
+      when: ansible_service_mgr == 'systemd'
+      changed_when: false
+      failed_when: systemctl_status.rc > 1
+
+  roles:
+    - role: geerlingguy.docker
