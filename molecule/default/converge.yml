@@ -15,13 +15,14 @@
       when: ansible_os_family == 'Debian'
 
     - name: Ensure python3 is installed
-      include_role:
-        name: darkwizard242.python3
+      package:
+        name: python3
 
-    - name: Ensure python virtual environment is available
-      include_role:
-        name: ome.python3_virtualenv
-
+    - name: Ensure virtualenv is available (Debian)
+      package:
+        name: python3-venv
+      when: ansible_os_family == 'Debian'
+    
     - name: Wait for systemd to complete initialization.  # noqa 303
       command: systemctl is-system-running
       register: systemctl_status
