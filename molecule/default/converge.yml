@@ -18,14 +18,17 @@
       package:
         name: python3
 
-    - name: Ensure virtualenv is available (Debian)
+    - name: Ensure virtualenv and wheel is available (Debian)
       package:
-        name: python3-venv
+        name:
+          - python3-venv
+          - python3-wheel
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure wheel is installed
-      pip:
-        name: wheel
+    - name: Ensure wheel is available (Rhel)
+      package:
+        name:
+          - python-wheel
 
     - name: Wait for systemd to complete initialization.  # noqa 303
       command: systemctl is-system-running
