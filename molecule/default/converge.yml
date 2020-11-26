@@ -23,6 +23,10 @@
         name: python3-venv
       when: ansible_os_family == 'Debian'
 
+    - name: Ensure wheel is installed
+      pip:
+        name: wheel
+
     - name: Wait for systemd to complete initialization.  # noqa 303
       command: systemctl is-system-running
       register: systemctl_status
