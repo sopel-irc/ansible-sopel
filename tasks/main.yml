@@ -24,7 +24,7 @@
     path: '{{ item }}'
     owner: sopel
     group: sopel
-    mode: 0644
+    mode: 0744
     state: directory
   with_items:
     - '{{ sopel_config_dir }}'
