@@ -1,4 +1,7 @@
 # *Deprecated. This role is no longer maintained. It is recommended to use the [officially unoffical docker image](https://github.com/sopel-irc/docker-sopel) instead.*
+If people want to take over maintaining this, open an issue and we'll sort it out.
+The issues are mostly CI related.
+
 ## What is ansible-sopel? [![CI](https://github.com/sopel-irc/ansible-sopel/workflows/CI/badge.svg)](https://github.com/sopel-irc/ansible-sopel/actions?query=workflow%3ACI)
 
 It is an [Ansible](http://www.ansible.com/home) role that installs sopel irc bot in a virtual environment.
