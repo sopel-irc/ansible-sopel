@@ -2,6 +2,7 @@
 
 galaxy_info:
   role_name: "sopel"
+  namespace: "sopel"
   author: "Mikkel Jeppesen"
   description: "Install sopel IRC bot and set up systemd unit"
   license: "license (MIT)"
