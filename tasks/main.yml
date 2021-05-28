@@ -11,6 +11,7 @@
 
 - name: Add sopel system user
   become: true
+  no_log: true
   user:
     name: sopel
     password: '!'
